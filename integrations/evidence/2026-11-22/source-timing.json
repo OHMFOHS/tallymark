@@ -1,0 +1,10 @@
+{
+  "installMs": 2318,
+  "buildMs": 1567,
+  "doctorMs": 440,
+  "totalMs": 4326,
+  "node": "v22.12.0",
+  "pnpm": "9.15.0",
+  "transport": "bundled stdio",
+  "freshStore": true
+}

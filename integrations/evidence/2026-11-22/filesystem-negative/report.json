@@ -1,0 +1,135 @@
+{
+  "reportVersion": 3,
+  "contractVersion": 1,
+  "planned": [
+    "missing-read"
+  ],
+  "seed": 1,
+  "results": [
+    {
+      "id": "missing-read",
+      "operationKey": "op-813b11e14f097a6f4b17dd0d",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 1,
+      "status": "FAIL",
+      "reason": "responses",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-813b11e14f097a6f4b17dd0d.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "tool-error"
+        },
+        {
+          "seq": 5,
+          "kind": "state",
+          "reading": "unavailable"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success",
+          "actual": "tool-error",
+          "verdict": "violated"
+        },
+        {
+          "name": "settlement",
+          "expected": 1,
+          "actual": null,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "0..1",
+          "actual": null,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "missing-read",
+        "target": "upstream",
+        "mode": "observational",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "read_text_file",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "none"
+        },
+        "expectResponses": [
+          "success"
+        ],
+        "verify": {
+          "kind": "none"
+        },
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 1000
+      }
+    }
+  ],
+  "findings": [
+    {
+      "version": 1,
+      "caseId": "missing-read",
+      "tool": "read_text_file",
+      "scenario": "none",
+      "mode": "observational",
+      "status": "FAIL",
+      "severity": "medium",
+      "conclusion": "The observed response sequence differs from the contract.",
+      "expected": {
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "responses": [
+          "success"
+        ]
+      },
+      "observed": {
+        "calls": 1,
+        "responses": [
+          "tool-error"
+        ],
+        "highestObservedEffects": null,
+        "completeTerminalSet": false
+      },
+      "evidenceEvents": [
+        2,
+        5
+      ],
+      "uncertainty": "The final terminal ID set is unconfirmed. Additional work may still complete.",
+      "remediation": "Compare the response sequence with the original contract and inspect the server handler.",
+      "reproduction": {
+        "replay": "mcp-reliability-kit report \"$REPORT_JSON\"",
+        "isolatedRun": "mcp-reliability-kit test -c \"$SUITE\" --case missing-read --allow-external --allow-stdio",
+        "conditions": "Use the original redacted suite inputs and seed 1 on a fresh isolated target. Reconcile pending effects before authorizing a live run."
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+version: 1
+seed: 42
+targets:
+  ledger: { kind: fixture, mode: unsafe }
+tests:
+  - id: lost-without-state
+    target: ledger
+    tool: record_payment
+    allowSideEffects: true
+    arguments: { operationKey: '{{operationKey}}', cents: 1250 }
+    fault: { kind: lost-response, maxRetries: 1 }
+    expectResponses: [lost, success]
+    verify: { kind: none }
+    invariant: { minEffects: 1, maxEffects: 1 }

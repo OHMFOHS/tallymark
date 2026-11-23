@@ -1,0 +1,290 @@
+{
+  "reportVersion": 3,
+  "contractVersion": 1,
+  "planned": [
+    "status",
+    "repeat-stage",
+    "verify-commit"
+  ],
+  "seed": 1,
+  "results": [
+    {
+      "id": "status",
+      "operationKey": "op-eebfa3c5be7042353413fac0",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 1,
+      "status": "INCONCLUSIVE",
+      "reason": "observed",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-eebfa3c5be7042353413fac0.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "state",
+          "reading": "unavailable"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success",
+          "actual": "success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 1,
+          "actual": null,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "0..1",
+          "actual": null,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "status",
+        "target": "upstream",
+        "mode": "observational",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "git_status",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "none"
+        },
+        "expectResponses": [
+          "success"
+        ],
+        "verify": {
+          "kind": "none"
+        },
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 1000
+      }
+    },
+    {
+      "id": "repeat-stage",
+      "operationKey": "op-4ae959320deb7821a6233275",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 2,
+      "status": "INCONCLUSIVE",
+      "reason": "observed",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-4ae959320deb7821a6233275.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "before-retry",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 6,
+          "kind": "invoke",
+          "attempt": 2,
+          "attemptId": "op-4ae959320deb7821a6233275.2"
+        },
+        {
+          "seq": 7,
+          "kind": "reply",
+          "attempt": 2,
+          "response": "success"
+        },
+        {
+          "seq": 8,
+          "kind": "state",
+          "reading": "unavailable"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success, success",
+          "actual": "success, success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 2,
+          "actual": null,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "0..1",
+          "actual": null,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "repeat-stage",
+        "target": "upstream",
+        "mode": "observational",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "git_add",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "duplicate",
+          "maxRetries": 1
+        },
+        "expectResponses": [
+          "success",
+          "success"
+        ],
+        "verify": {
+          "kind": "none"
+        },
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 1000
+      }
+    },
+    {
+      "id": "verify-commit",
+      "operationKey": "op-2d8c8b3a62fa03673369dfd5",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 1,
+      "status": "INCONCLUSIVE",
+      "reason": "unknown",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "absent"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-2d8c8b3a62fa03673369dfd5.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "state",
+          "reading": "present",
+          "entry": {
+            "effects": 1,
+            "settledAttempts": 0
+          }
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success",
+          "actual": "success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 1,
+          "actual": 0,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "1..1",
+          "actual": 1,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "verify-commit",
+        "target": "upstream",
+        "mode": "verified",
+        "retryPolicy": "after-settlement",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "git_commit",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "none"
+        },
+        "expectResponses": [
+          "success"
+        ],
+        "verify": {
+          "kind": "file"
+        },
+        "invariant": {
+          "minEffects": 1,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 800
+      }
+    }
+  ]
+}

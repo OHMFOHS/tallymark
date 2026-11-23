@@ -1,0 +1,11 @@
+{
+  "platform": "darwin",
+  "arch": "arm64",
+  "node": "v24.22.3",
+  "filesystem": "2.4.0",
+  "memory": "2.2.1",
+  "python": "3.13.5",
+  "gitServer": "2026.11.18",
+  "pythonSdk": "2.3.0",
+  "git": "git version 2.54.0 (Apple Git-157)"
+}

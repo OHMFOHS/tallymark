@@ -1,0 +1,200 @@
+{
+  "reportVersion": 3,
+  "contractVersion": 1,
+  "planned": [
+    "read-seed",
+    "repeat-write"
+  ],
+  "seed": 1,
+  "results": [
+    {
+      "id": "read-seed",
+      "operationKey": "op-2c5776458eb9cc8d610e3c95",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 1,
+      "status": "INCONCLUSIVE",
+      "reason": "observed",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-2c5776458eb9cc8d610e3c95.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "state",
+          "reading": "unavailable"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success",
+          "actual": "success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 1,
+          "actual": null,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "0..1",
+          "actual": null,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "read-seed",
+        "target": "upstream",
+        "mode": "observational",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "read_text_file",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "none"
+        },
+        "expectResponses": [
+          "success"
+        ],
+        "verify": {
+          "kind": "none"
+        },
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 1000
+      }
+    },
+    {
+      "id": "repeat-write",
+      "operationKey": "op-6fdcc027b06154e26417eee0",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 2,
+      "status": "INCONCLUSIVE",
+      "reason": "observed",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-6fdcc027b06154e26417eee0.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "before-retry",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 6,
+          "kind": "invoke",
+          "attempt": 2,
+          "attemptId": "op-6fdcc027b06154e26417eee0.2"
+        },
+        {
+          "seq": 7,
+          "kind": "reply",
+          "attempt": 2,
+          "response": "success"
+        },
+        {
+          "seq": 8,
+          "kind": "state",
+          "reading": "unavailable"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success, success",
+          "actual": "success, success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 2,
+          "actual": null,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "0..1",
+          "actual": null,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "repeat-write",
+        "target": "upstream",
+        "mode": "observational",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "write_file",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "duplicate",
+          "maxRetries": 1
+        },
+        "expectResponses": [
+          "success",
+          "success"
+        ],
+        "verify": {
+          "kind": "none"
+        },
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 1000
+      }
+    }
+  ]
+}

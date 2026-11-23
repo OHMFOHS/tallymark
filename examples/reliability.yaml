@@ -1,0 +1,43 @@
+version: 1
+seed: 42
+targets:
+  ledger:
+    kind: fixture
+    mode: safe
+tests:
+  - id: duplicate
+    target: ledger
+    tool: record_payment
+    arguments: { operationKey: '{{operationKey}}', cents: 1250 }
+    allowSideEffects: true
+    fault: { kind: duplicate, maxRetries: 1 }
+    expectResponses: [success, success]
+    verify: { kind: fixture }
+    invariant: { minEffects: 1, maxEffects: 1 }
+  - id: lost-reply
+    target: ledger
+    tool: record_payment
+    arguments: { operationKey: '{{operationKey}}', cents: 1250 }
+    allowSideEffects: true
+    fault: { kind: lost-response, maxRetries: 1 }
+    expectResponses: [lost, success]
+    verify: { kind: fixture }
+    invariant: { minEffects: 1, maxEffects: 1 }
+  - id: cancel-after-commit
+    target: ledger
+    tool: record_payment
+    arguments: { operationKey: '{{operationKey}}', cents: 1250 }
+    allowSideEffects: true
+    fault: { kind: timeout, deadlineMs: 250 }
+    expectResponses: [timeout]
+    verify: { kind: fixture }
+    invariant: { minEffects: 1, maxEffects: 1 }
+  - id: recover
+    target: ledger
+    tool: record_payment
+    arguments: { operationKey: '{{operationKey}}', cents: 1250 }
+    allowSideEffects: true
+    fault: { kind: transient, failures: 1, maxRetries: 1 }
+    expectResponses: [tool-error, success]
+    verify: { kind: fixture }
+    invariant: { minEffects: 1, maxEffects: 1 }

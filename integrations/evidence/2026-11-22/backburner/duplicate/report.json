@@ -1,0 +1,176 @@
+{
+  "reportVersion": 4,
+  "contractVersion": 1,
+  "planned": [
+    "duplicate"
+  ],
+  "seed": 1,
+  "results": [
+    {
+      "id": "duplicate",
+      "operationKey": "op-a744f79cea2410c03a53bf62",
+      "scenarioVersion": 4,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 2,
+      "status": "FAIL",
+      "reason": "invariant",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "absent",
+          "ageMs": 2
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-a744f79cea2410c03a53bf62.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply-withheld",
+          "attempt": 1,
+          "response": "lost"
+        },
+        {
+          "seq": 5,
+          "kind": "before-retry",
+          "reading": "present",
+          "ageMs": 2,
+          "entry": {
+            "effects": 1,
+            "settledAttempts": 1,
+            "settledAttemptIds": [
+              "op-a744f79cea2410c03a53bf62.1"
+            ]
+          }
+        },
+        {
+          "seq": 6,
+          "kind": "invoke",
+          "attempt": 2,
+          "attemptId": "op-a744f79cea2410c03a53bf62.2"
+        },
+        {
+          "seq": 7,
+          "kind": "reply",
+          "attempt": 2,
+          "response": "success"
+        },
+        {
+          "seq": 8,
+          "kind": "state",
+          "reading": "present",
+          "ageMs": 19,
+          "entry": {
+            "effects": 2,
+            "settledAttempts": 2,
+            "settledAttemptIds": [
+              "op-a744f79cea2410c03a53bf62.1",
+              "op-a744f79cea2410c03a53bf62.2"
+            ]
+          }
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "lost, success",
+          "actual": "lost, success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 2,
+          "actual": 2,
+          "verdict": "met"
+        },
+        {
+          "name": "effects",
+          "expected": "1..1",
+          "actual": 2,
+          "verdict": "violated"
+        }
+      ],
+      "config": {
+        "id": "duplicate",
+        "target": "backburner",
+        "mode": "verified",
+        "retryPolicy": "after-settlement",
+        "transport": {
+          "kind": "http",
+          "endpoint": "[redacted]"
+        },
+        "tool": "start_task",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "lost-response",
+          "maxRetries": 1
+        },
+        "expectResponses": [
+          "lost",
+          "success"
+        ],
+        "verify": {
+          "kind": "file",
+          "maxAgeMs": 1000
+        },
+        "invariant": {
+          "minEffects": 1,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 3000,
+        "settleTimeoutMs": 4500
+      }
+    }
+  ],
+  "findings": [
+    {
+      "version": 1,
+      "caseId": "duplicate",
+      "tool": "start_task",
+      "scenario": "lost-response",
+      "mode": "verified",
+      "status": "FAIL",
+      "severity": "high",
+      "conclusion": "2 committed effects observed for one logical operation. The declared maximum is 1.",
+      "expected": {
+        "invariant": {
+          "minEffects": 1,
+          "maxEffects": 1
+        },
+        "responses": [
+          "lost",
+          "success"
+        ]
+      },
+      "observed": {
+        "calls": 2,
+        "responses": [
+          "lost",
+          "success"
+        ],
+        "highestObservedEffects": 2,
+        "completeTerminalSet": true
+      },
+      "evidenceEvents": [
+        2,
+        5,
+        8
+      ],
+      "uncertainty": null,
+      "remediation": "If repeats must collapse, enforce uniqueness on the operation key in the transaction that commits the effect. Reconcile existing effects first.",
+      "reproduction": {
+        "replay": "mcp-reliability-kit report \"$REPORT_JSON\"",
+        "isolatedRun": "mcp-reliability-kit test -c \"$SUITE\" --case duplicate --allow-external --allow-url \"$MCP_URL\"",
+        "conditions": "Restore the original suite inputs and use seed 1 on a fresh isolated target. Reconcile pending effects before authorizing a live run."
+      }
+    }
+  ]
+}

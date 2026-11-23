@@ -1,0 +1,11 @@
+node_modules/
+dist/
+artifacts/
+.firecrawl/
+reliability.yaml
+!examples/reliability.yaml
+*.tgz
+coverage/
+.DS_Store
+.venv/
+__pycache__/

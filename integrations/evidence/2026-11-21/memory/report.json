@@ -1,0 +1,200 @@
+{
+  "reportVersion": 3,
+  "contractVersion": 1,
+  "planned": [
+    "read-graph",
+    "repeat-entity"
+  ],
+  "seed": 1,
+  "results": [
+    {
+      "id": "read-graph",
+      "operationKey": "op-e63dc2f117a3e0354042fa66",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 1,
+      "status": "INCONCLUSIVE",
+      "reason": "observed",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-e63dc2f117a3e0354042fa66.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "state",
+          "reading": "unavailable"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success",
+          "actual": "success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 1,
+          "actual": null,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "0..1",
+          "actual": null,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "read-graph",
+        "target": "upstream",
+        "mode": "observational",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "read_graph",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "none"
+        },
+        "expectResponses": [
+          "success"
+        ],
+        "verify": {
+          "kind": "none"
+        },
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 1000
+      }
+    },
+    {
+      "id": "repeat-entity",
+      "operationKey": "op-a4fcd1485bd66ec87b2a9c15",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 2,
+      "status": "INCONCLUSIVE",
+      "reason": "observed",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-a4fcd1485bd66ec87b2a9c15.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "before-retry",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 6,
+          "kind": "invoke",
+          "attempt": 2,
+          "attemptId": "op-a4fcd1485bd66ec87b2a9c15.2"
+        },
+        {
+          "seq": 7,
+          "kind": "reply",
+          "attempt": 2,
+          "response": "success"
+        },
+        {
+          "seq": 8,
+          "kind": "state",
+          "reading": "unavailable"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success, success",
+          "actual": "success, success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 2,
+          "actual": null,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "0..1",
+          "actual": null,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "repeat-entity",
+        "target": "upstream",
+        "mode": "observational",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "create_entities",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "duplicate",
+          "maxRetries": 1
+        },
+        "expectResponses": [
+          "success",
+          "success"
+        ],
+        "verify": {
+          "kind": "none"
+        },
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 1000
+      }
+    }
+  ]
+}

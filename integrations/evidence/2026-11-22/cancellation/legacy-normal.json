@@ -1,0 +1,174 @@
+{
+  "summary": {
+    "client": "legacy",
+    "stage": "normal",
+    "protocol": "2025-11-25",
+    "outcome": "success",
+    "deadlineMs": 5000,
+    "elapsedMs": 10,
+    "operationKey": "op-e80748d60b08441a86366038",
+    "requestId": 2,
+    "clientSentCalls": 1,
+    "serverReceivedCalls": 1,
+    "cancelNotificationsSent": 0,
+    "cancelNotificationsReceived": 0,
+    "callDisconnectObserved": false,
+    "handlerCancellations": 0,
+    "sseResponseOpened": true,
+    "receiptsAtClientResult": 0,
+    "receiptsAfterClientExit": null,
+    "finalReceipts": 1
+  },
+  "clientEvents": [
+    {
+      "event": "postSent",
+      "atMs": 1795379505491,
+      "method": "initialize",
+      "id": 0
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379506034,
+      "method": "notifications/initialized"
+    },
+    {
+      "event": "httpSent",
+      "atMs": 1795379506037,
+      "http": "GET"
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379506037,
+      "method": "tools/list",
+      "id": 1
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379506043,
+      "method": "tools/call",
+      "id": 2,
+      "attempt": "op-e80748d60b08441a86366038.1"
+    },
+    {
+      "event": "progress",
+      "atMs": 1795379506047
+    },
+    {
+      "event": "result",
+      "atMs": 1795379506053,
+      "result": "success",
+      "protocol": "2025-11-25",
+      "deadlineMs": 5000,
+      "elapsedMs": 10
+    },
+    {
+      "event": "cleanupStarted",
+      "atMs": 1795379506116
+    },
+    {
+      "event": "httpSent",
+      "atMs": 1795379506117,
+      "http": "DELETE"
+    }
+  ],
+  "serverEventsBeforeClientCleanup": [
+    {
+      "event": "postReceived",
+      "atUs": 1795379506022769,
+      "method": "initialize",
+      "id": 0,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379506035193,
+      "method": "notifications/initialized",
+      "id": null,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379506038034,
+      "method": "tools/list",
+      "id": 1,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379506044122,
+      "method": "tools/call",
+      "id": 2,
+      "targetId": null,
+      "attempt": "op-e80748d60b08441a86366038.1"
+    },
+    {
+      "event": "callResponseStarted",
+      "atUs": 1795379506044411,
+      "id": 2,
+      "status": 200,
+      "contentType": "text/event-stream"
+    },
+    {
+      "event": "handlerEntered",
+      "atUs": 1795379506045056,
+      "id": 2,
+      "protocol": "2025-11-25"
+    },
+    {
+      "event": "nativeToolReturned",
+      "atUs": 1795379506051823,
+      "id": 2,
+      "protocol": "2025-11-25"
+    }
+  ],
+  "releaseStartedAtUs": 1795379506083007,
+  "clientProcessExitObservedAtUs": null,
+  "atClientResult": {
+    "backupSha256": "5892d3a5e22ac0b3d8ffcb7825522bb919814a5d1e97a14b7f5e338c4b00a636",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "c2bc926f",
+        "status": "working",
+        "exit_code": null,
+        "created_at": 1795379506.049462,
+        "finished_at": null,
+        "attempt_id": "op-e80748d60b08441a86366038.1"
+      }
+    ],
+    "receipts": [],
+    "deliveries": []
+  },
+  "afterClientExit": null,
+  "finalDatabase": {
+    "backupSha256": "13ee949bf2357f51ac114a4553fe4ed698238ccb574df75041e763dde009b545",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "c2bc926f",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795379506.049462,
+        "finished_at": 1795379506.087374,
+        "attempt_id": "op-e80748d60b08441a86366038.1"
+      }
+    ],
+    "receipts": [
+      {
+        "id": 1,
+        "operation_key": "op-e80748d60b08441a86366038",
+        "created_by": "op-e80748d60b08441a86366038.1"
+      }
+    ],
+    "deliveries": [
+      {
+        "attempt_id": "op-e80748d60b08441a86366038.1",
+        "operation_key": "op-e80748d60b08441a86366038",
+        "receipt_id": 1
+      }
+    ]
+  }
+}

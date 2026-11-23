@@ -1,0 +1,43 @@
+name: Publish approved npm beta
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Check release identity
+        run: node scripts/check-release.mjs
+  verify:
+    needs: preflight
+    uses: ./.github/workflows/ci.yml
+  publish:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment: npm-beta
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    steps:
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - name: Download the tested archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --name evidence-ubuntu-latest-node-24 --dir candidate
+      - name: Publish the beta artifact with OIDC
+        shell: bash
+        run: |
+          set -eu -o pipefail
+          cd candidate/pack
+          archive="mcp-reliability-kit-${GITHUB_REF_NAME#v}.tgz"
+          test "$(sha256sum "$archive")" = "$(cat "$archive.sha256")"
+          tar -xOzf "$archive" package/package.json | jq -e --arg tag "$GITHUB_REF_NAME" --arg repo "git+https://github.com/$GITHUB_REPOSITORY.git" '
+            .name == "mcp-reliability-kit" and ("v" + .version) == $tag and .repository.url == $repo
+          '
+          npm publish "$archive" --tag beta --access public --provenance --ignore-scripts --registry=https://registry.npmjs.org

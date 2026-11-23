@@ -1,0 +1,399 @@
+{
+  "title": "MCP Reliability Kit contract v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "const": 1
+    },
+    "seed": {
+      "default": 1,
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2147483647
+    },
+    "targets": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/__schema0"
+      },
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "fixture"
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "safe",
+                  "unsafe"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "mode"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "stdio"
+              },
+              "command": {
+                "$ref": "#/$defs/__schema1"
+              },
+              "args": {
+                "default": [],
+                "maxItems": 32,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema1"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "command"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "http"
+              },
+              "url": {
+                "type": "string",
+                "maxLength": 2048,
+                "format": "uri"
+              }
+            },
+            "required": [
+              "kind",
+              "url"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "tests": {
+      "minItems": 1,
+      "maxItems": 32,
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/__schema2"
+      }
+    }
+  },
+  "required": [
+    "version",
+    "targets",
+    "tests"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_][A-Za-z0-9_.-]{0,63}$"
+    },
+    "__schema1": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048
+    },
+    "__schema2": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "target": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "observational",
+            "verified"
+          ]
+        },
+        "retryPolicy": {
+          "type": "string",
+          "enum": [
+            "after-settlement",
+            "scheduled"
+          ]
+        },
+        "tool": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "arguments": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema3"
+          }
+        },
+        "allowSideEffects": {
+          "default": false,
+          "type": "boolean"
+        },
+        "fault": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "none"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "duplicate"
+                },
+                "maxRetries": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 3
+                }
+              },
+              "required": [
+                "kind",
+                "maxRetries"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "lost-response"
+                },
+                "maxRetries": {
+                  "type": "number",
+                  "const": 1
+                }
+              },
+              "required": [
+                "kind",
+                "maxRetries"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "timeout"
+                },
+                "deadlineMs": {
+                  "type": "integer",
+                  "minimum": 30,
+                  "maximum": 5000
+                }
+              },
+              "required": [
+                "kind",
+                "deadlineMs"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "transient"
+                },
+                "failures": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 2
+                },
+                "maxRetries": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 3
+                }
+              },
+              "required": [
+                "kind",
+                "failures",
+                "maxRetries"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "expectResponses": {
+          "minItems": 1,
+          "maxItems": 4,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema4"
+          }
+        },
+        "verify": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "fixture"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "none"
+                }
+              },
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "file"
+                },
+                "path": {
+                  "$ref": "#/$defs/__schema1"
+                },
+                "maxAgeMs": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 86400000
+                }
+              },
+              "required": [
+                "kind",
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "invariant": {
+          "type": "object",
+          "properties": {
+            "minEffects": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            "maxEffects": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            }
+          },
+          "required": [
+            "minEffects",
+            "maxEffects"
+          ],
+          "additionalProperties": false
+        },
+        "requestTimeoutMs": {
+          "default": 3000,
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 10000
+        },
+        "settleTimeoutMs": {
+          "default": 1000,
+          "type": "integer",
+          "minimum": 50,
+          "maximum": 5000
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "tool",
+        "arguments",
+        "fault",
+        "expectResponses",
+        "verify",
+        "invariant"
+      ],
+      "additionalProperties": false
+    },
+    "__schema3": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema3"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema3"
+          }
+        }
+      ]
+    },
+    "__schema4": {
+      "type": "string",
+      "enum": [
+        "success",
+        "tool-error",
+        "lost",
+        "timeout"
+      ]
+    }
+  }
+}

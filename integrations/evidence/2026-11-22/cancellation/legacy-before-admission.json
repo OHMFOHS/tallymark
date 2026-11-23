@@ -1,0 +1,158 @@
+{
+  "summary": {
+    "client": "legacy",
+    "stage": "before-admission",
+    "protocol": "2025-11-25",
+    "outcome": "timeout",
+    "deadlineMs": 800,
+    "elapsedMs": 801,
+    "operationKey": "op-30a341b9376c428c9cf4b3dd",
+    "requestId": 2,
+    "clientSentCalls": 1,
+    "serverReceivedCalls": 1,
+    "cancelNotificationsSent": 1,
+    "cancelNotificationsReceived": 1,
+    "callDisconnectObserved": false,
+    "handlerCancellations": 1,
+    "sseResponseOpened": true,
+    "receiptsAtClientResult": 0,
+    "receiptsAfterClientExit": null,
+    "finalReceipts": 0
+  },
+  "clientEvents": [
+    {
+      "event": "postSent",
+      "atMs": 1795379503663,
+      "method": "initialize",
+      "id": 0
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379504213,
+      "method": "notifications/initialized"
+    },
+    {
+      "event": "httpSent",
+      "atMs": 1795379504216,
+      "http": "GET"
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379504216,
+      "method": "tools/list",
+      "id": 1
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379504223,
+      "method": "tools/call",
+      "id": 2,
+      "attempt": "op-30a341b9376c428c9cf4b3dd.1"
+    },
+    {
+      "event": "progress",
+      "atMs": 1795379504226
+    },
+    {
+      "event": "result",
+      "atMs": 1795379505023,
+      "result": "timeout",
+      "protocol": "2025-11-25",
+      "deadlineMs": 800,
+      "elapsedMs": 801
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379505024,
+      "method": "notifications/cancelled",
+      "targetId": 2
+    },
+    {
+      "event": "cleanupStarted",
+      "atMs": 1795379505066
+    },
+    {
+      "event": "httpSent",
+      "atMs": 1795379505067,
+      "http": "DELETE"
+    }
+  ],
+  "serverEventsBeforeClientCleanup": [
+    {
+      "event": "postReceived",
+      "atUs": 1795379504201444,
+      "method": "initialize",
+      "id": 0,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379504214168,
+      "method": "notifications/initialized",
+      "id": null,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379504217084,
+      "method": "tools/list",
+      "id": 1,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379504223765,
+      "method": "tools/call",
+      "id": 2,
+      "targetId": null,
+      "attempt": "op-30a341b9376c428c9cf4b3dd.1"
+    },
+    {
+      "event": "callResponseStarted",
+      "atUs": 1795379504224119,
+      "id": 2,
+      "status": 200,
+      "contentType": "text/event-stream"
+    },
+    {
+      "event": "handlerEntered",
+      "atUs": 1795379504224848,
+      "id": 2,
+      "protocol": "2025-11-25"
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379505024739,
+      "method": "notifications/cancelled",
+      "id": null,
+      "targetId": 2,
+      "attempt": null
+    },
+    {
+      "event": "handlerCancelled",
+      "atUs": 1795379505025218,
+      "id": 2,
+      "protocol": "2025-11-25"
+    }
+  ],
+  "releaseStartedAtUs": 1795379505055682,
+  "clientProcessExitObservedAtUs": null,
+  "atClientResult": {
+    "backupSha256": "b0df78ed16ee976e811432cd1553453f1b55b09de4bbc87b2d1bac46a35da448",
+    "uniqueOperationIndex": false,
+    "jobs": [],
+    "receipts": [],
+    "deliveries": []
+  },
+  "afterClientExit": null,
+  "finalDatabase": {
+    "backupSha256": "b0df78ed16ee976e811432cd1553453f1b55b09de4bbc87b2d1bac46a35da448",
+    "uniqueOperationIndex": false,
+    "jobs": [],
+    "receipts": [],
+    "deliveries": []
+  }
+}

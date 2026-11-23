@@ -1,0 +1,50 @@
+{
+  "cliExit": 3,
+  "replayExit": 3,
+  "cliReturnedAt": 1795378870.329399,
+  "gateReleaseStartedAt": 1795378870.335114,
+  "atVerdict": {
+    "backupSha256": "1cd7923e296091b8fdd75d325714ed90aee3443eb383670bbf52b59c3f8ce5a0",
+    "uniqueOperationIndex": true,
+    "jobs": [
+      {
+        "id": "29cba51a",
+        "status": "working",
+        "exit_code": null,
+        "created_at": 1795378869.783102,
+        "finished_at": null,
+        "attempt_id": "op-51dcdfec966c83be0970b6e1.1"
+      }
+    ],
+    "receipts": [],
+    "deliveries": []
+  },
+  "afterSettlement": {
+    "backupSha256": "b746d43af6a8f3d8a57cad72bd7812547230c40bc976e46878185f59bbb20468",
+    "uniqueOperationIndex": true,
+    "jobs": [
+      {
+        "id": "29cba51a",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378869.783102,
+        "finished_at": 1795378870.354638,
+        "attempt_id": "op-51dcdfec966c83be0970b6e1.1"
+      }
+    ],
+    "receipts": [
+      {
+        "id": 1,
+        "operation_key": "op-51dcdfec966c83be0970b6e1",
+        "created_by": "op-51dcdfec966c83be0970b6e1.1"
+      }
+    ],
+    "deliveries": [
+      {
+        "attempt_id": "op-51dcdfec966c83be0970b6e1.1",
+        "operation_key": "op-51dcdfec966c83be0970b6e1",
+        "receipt_id": 1
+      }
+    ]
+  }
+}

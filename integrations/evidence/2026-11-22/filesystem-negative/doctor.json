@@ -1,0 +1,97 @@
+{
+  "elapsedMs": 415,
+  "diagnostic": {
+    "diagnosticVersion": 1,
+    "mode": "observational",
+    "transport": "stdio",
+    "protocol": "2026-07-28",
+    "toolCalls": 0,
+    "safety": "unassessed",
+    "tools": [
+      {
+        "name": "read_file",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "read_text_file",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "read_media_file",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "read_multiple_files",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "write_file",
+        "readOnlyHint": false,
+        "taskRequired": false
+      },
+      {
+        "name": "append_file",
+        "readOnlyHint": false,
+        "taskRequired": false
+      },
+      {
+        "name": "edit_file",
+        "readOnlyHint": false,
+        "taskRequired": false
+      },
+      {
+        "name": "create_directory",
+        "readOnlyHint": false,
+        "taskRequired": false
+      },
+      {
+        "name": "list_directory",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "list_directory_with_sizes",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "directory_tree",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "move_file",
+        "readOnlyHint": false,
+        "taskRequired": false
+      },
+      {
+        "name": "copy_file",
+        "readOnlyHint": false,
+        "taskRequired": false
+      },
+      {
+        "name": "search_files",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "get_file_info",
+        "readOnlyHint": true,
+        "taskRequired": false
+      },
+      {
+        "name": "list_allowed_directories",
+        "readOnlyHint": true,
+        "taskRequired": false
+      }
+    ],
+    "nextSteps": [
+      "To observe one authorized call, initialize a suite with mcp-reliability-kit init, set its target, tool and arguments, and review allowSideEffects. Use mode: observational and verify.kind: none.",
+      "To verify a state change, declare the effect bound and export committed effects and terminal attempt IDs from the downstream store. Set mode: verified and verify.kind: file."
+    ]
+  }
+}

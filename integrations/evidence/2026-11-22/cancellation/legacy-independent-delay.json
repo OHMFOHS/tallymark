@@ -1,0 +1,209 @@
+{
+  "summary": {
+    "client": "legacy",
+    "stage": "independent-delay",
+    "protocol": "2025-11-25",
+    "outcome": "timeout",
+    "deadlineMs": 800,
+    "elapsedMs": 802,
+    "operationKey": "op-5f06fbd4caa840c4ad9148b4",
+    "requestId": 2,
+    "clientSentCalls": 1,
+    "serverReceivedCalls": 1,
+    "cancelNotificationsSent": 1,
+    "cancelNotificationsReceived": 1,
+    "callDisconnectObserved": false,
+    "handlerCancellations": 1,
+    "sseResponseOpened": true,
+    "receiptsAtClientResult": 0,
+    "receiptsAfterClientExit": 0,
+    "finalReceipts": 1
+  },
+  "clientEvents": [
+    {
+      "event": "postSent",
+      "atMs": 1795379506595,
+      "method": "initialize",
+      "id": 0
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379507131,
+      "method": "notifications/initialized"
+    },
+    {
+      "event": "httpSent",
+      "atMs": 1795379507133,
+      "http": "GET"
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379507134,
+      "method": "tools/list",
+      "id": 1
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379507141,
+      "method": "tools/call",
+      "id": 2,
+      "attempt": "op-5f06fbd4caa840c4ad9148b4.1"
+    },
+    {
+      "event": "progress",
+      "atMs": 1795379507144
+    },
+    {
+      "event": "result",
+      "atMs": 1795379507942,
+      "result": "timeout",
+      "protocol": "2025-11-25",
+      "deadlineMs": 800,
+      "elapsedMs": 802
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379507943,
+      "method": "notifications/cancelled",
+      "targetId": 2
+    },
+    {
+      "event": "cleanupStarted",
+      "atMs": 1795379507964
+    },
+    {
+      "event": "httpSent",
+      "atMs": 1795379507966,
+      "http": "DELETE"
+    }
+  ],
+  "serverEventsBeforeClientCleanup": [
+    {
+      "event": "postReceived",
+      "atUs": 1795379507119754,
+      "method": "initialize",
+      "id": 0,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379507131912,
+      "method": "notifications/initialized",
+      "id": null,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379507134764,
+      "method": "tools/list",
+      "id": 1,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379507141352,
+      "method": "tools/call",
+      "id": 2,
+      "targetId": null,
+      "attempt": "op-5f06fbd4caa840c4ad9148b4.1"
+    },
+    {
+      "event": "callResponseStarted",
+      "atUs": 1795379507141664,
+      "id": 2,
+      "status": 200,
+      "contentType": "text/event-stream"
+    },
+    {
+      "event": "handlerEntered",
+      "atUs": 1795379507142343,
+      "id": 2,
+      "protocol": "2025-11-25"
+    },
+    {
+      "event": "nativeToolReturned",
+      "atUs": 1795379507150763,
+      "id": 2,
+      "protocol": "2025-11-25"
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379507945515,
+      "method": "notifications/cancelled",
+      "id": null,
+      "targetId": 2,
+      "attempt": null
+    },
+    {
+      "event": "handlerCancelled",
+      "atUs": 1795379507947762,
+      "id": 2,
+      "protocol": "2025-11-25"
+    }
+  ],
+  "releaseStartedAtUs": null,
+  "clientProcessExitObservedAtUs": 1795379507993795,
+  "atClientResult": {
+    "backupSha256": "0f82fea8b5ee5f4fda0427a7b5f44e3afca988c7f4aeca92deaa675e93c34fea",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "97f34c32",
+        "status": "working",
+        "exit_code": null,
+        "created_at": 1795379507.148318,
+        "finished_at": null,
+        "attempt_id": "op-5f06fbd4caa840c4ad9148b4.1"
+      }
+    ],
+    "receipts": [],
+    "deliveries": []
+  },
+  "afterClientExit": {
+    "backupSha256": "0f82fea8b5ee5f4fda0427a7b5f44e3afca988c7f4aeca92deaa675e93c34fea",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "97f34c32",
+        "status": "working",
+        "exit_code": null,
+        "created_at": 1795379507.148318,
+        "finished_at": null,
+        "attempt_id": "op-5f06fbd4caa840c4ad9148b4.1"
+      }
+    ],
+    "receipts": [],
+    "deliveries": []
+  },
+  "finalDatabase": {
+    "backupSha256": "1d399f1eead8c47cc3c434c8215102f3892b2a89d21912ebd4bfd2ceeb85afce",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "97f34c32",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795379507.148318,
+        "finished_at": 1795379509.2006679,
+        "attempt_id": "op-5f06fbd4caa840c4ad9148b4.1"
+      }
+    ],
+    "receipts": [
+      {
+        "id": 1,
+        "operation_key": "op-5f06fbd4caa840c4ad9148b4",
+        "created_by": "op-5f06fbd4caa840c4ad9148b4.1"
+      }
+    ],
+    "deliveries": [
+      {
+        "attempt_id": "op-5f06fbd4caa840c4ad9148b4.1",
+        "operation_key": "op-5f06fbd4caa840c4ad9148b4",
+        "receipt_id": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "cliExit": 0,
+  "replayExit": 0,
+  "cliReturnedAt": 1795378868.391694,
+  "gateReleaseStartedAt": null,
+  "atVerdict": {
+    "backupSha256": "477d9a9db8105a7ff3fa5ba19465f7084cf54ca114dbe4d1a19429355358b450",
+    "uniqueOperationIndex": true,
+    "jobs": [
+      {
+        "id": "c0a098d1",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378868.243891,
+        "finished_at": 1795378868.283113,
+        "attempt_id": "op-ab3bb7b9cbd1103046a753e7.1"
+      },
+      {
+        "id": "2de9c73a",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378868.299325,
+        "finished_at": 1795378868.341991,
+        "attempt_id": "op-ab3bb7b9cbd1103046a753e7.2"
+      }
+    ],
+    "receipts": [
+      {
+        "id": 1,
+        "operation_key": "op-ab3bb7b9cbd1103046a753e7",
+        "created_by": "op-ab3bb7b9cbd1103046a753e7.1"
+      }
+    ],
+    "deliveries": [
+      {
+        "attempt_id": "op-ab3bb7b9cbd1103046a753e7.1",
+        "operation_key": "op-ab3bb7b9cbd1103046a753e7",
+        "receipt_id": 1
+      },
+      {
+        "attempt_id": "op-ab3bb7b9cbd1103046a753e7.2",
+        "operation_key": "op-ab3bb7b9cbd1103046a753e7",
+        "receipt_id": 1
+      }
+    ]
+  },
+  "afterSettlement": {
+    "backupSha256": "477d9a9db8105a7ff3fa5ba19465f7084cf54ca114dbe4d1a19429355358b450",
+    "uniqueOperationIndex": true,
+    "jobs": [
+      {
+        "id": "c0a098d1",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378868.243891,
+        "finished_at": 1795378868.283113,
+        "attempt_id": "op-ab3bb7b9cbd1103046a753e7.1"
+      },
+      {
+        "id": "2de9c73a",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378868.299325,
+        "finished_at": 1795378868.341991,
+        "attempt_id": "op-ab3bb7b9cbd1103046a753e7.2"
+      }
+    ],
+    "receipts": [
+      {
+        "id": 1,
+        "operation_key": "op-ab3bb7b9cbd1103046a753e7",
+        "created_by": "op-ab3bb7b9cbd1103046a753e7.1"
+      }
+    ],
+    "deliveries": [
+      {
+        "attempt_id": "op-ab3bb7b9cbd1103046a753e7.1",
+        "operation_key": "op-ab3bb7b9cbd1103046a753e7",
+        "receipt_id": 1
+      },
+      {
+        "attempt_id": "op-ab3bb7b9cbd1103046a753e7.2",
+        "operation_key": "op-ab3bb7b9cbd1103046a753e7",
+        "receipt_id": 1
+      }
+    ]
+  }
+}

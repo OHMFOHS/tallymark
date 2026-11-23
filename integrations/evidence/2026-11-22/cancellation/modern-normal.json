@@ -1,0 +1,151 @@
+{
+  "summary": {
+    "client": "modern",
+    "stage": "normal",
+    "protocol": "2026-07-28",
+    "outcome": "success",
+    "deadlineMs": 5000,
+    "elapsedMs": 15,
+    "operationKey": "op-814b5b938c174978ac11eb2c",
+    "requestId": 1,
+    "clientSentCalls": 1,
+    "serverReceivedCalls": 1,
+    "cancelNotificationsSent": 0,
+    "cancelNotificationsReceived": 0,
+    "callDisconnectObserved": false,
+    "handlerCancellations": 0,
+    "sseResponseOpened": true,
+    "receiptsAtClientResult": 0,
+    "receiptsAfterClientExit": null,
+    "finalReceipts": 1
+  },
+  "clientEvents": [
+    {
+      "event": "postSent",
+      "atMs": 1795379497654,
+      "method": "server/discover",
+      "id": "server-discover-probe-1"
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379498190,
+      "method": "tools/list",
+      "id": 0
+    },
+    {
+      "event": "postSent",
+      "atMs": 1795379498197,
+      "method": "tools/call",
+      "id": 1,
+      "attempt": "op-814b5b938c174978ac11eb2c.1"
+    },
+    {
+      "event": "progress",
+      "atMs": 1795379498207
+    },
+    {
+      "event": "result",
+      "atMs": 1795379498212,
+      "result": "success",
+      "protocol": "2026-07-28",
+      "deadlineMs": 5000,
+      "elapsedMs": 15
+    },
+    {
+      "event": "cleanupStarted",
+      "atMs": 1795379498274
+    }
+  ],
+  "serverEventsBeforeClientCleanup": [
+    {
+      "event": "postReceived",
+      "atUs": 1795379498177403,
+      "method": "server/discover",
+      "id": "server-discover-probe-1",
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379498190565,
+      "method": "tools/list",
+      "id": 0,
+      "targetId": null,
+      "attempt": null
+    },
+    {
+      "event": "postReceived",
+      "atUs": 1795379498198090,
+      "method": "tools/call",
+      "id": 1,
+      "targetId": null,
+      "attempt": "op-814b5b938c174978ac11eb2c.1"
+    },
+    {
+      "event": "handlerEntered",
+      "atUs": 1795379498199698,
+      "id": 1,
+      "protocol": "2026-07-28"
+    },
+    {
+      "event": "callResponseStarted",
+      "atUs": 1795379498200038,
+      "id": 1,
+      "status": 200,
+      "contentType": "text/event-stream"
+    },
+    {
+      "event": "nativeToolReturned",
+      "atUs": 1795379498210759,
+      "id": 1,
+      "protocol": "2026-07-28"
+    }
+  ],
+  "releaseStartedAtUs": 1795379498239418,
+  "clientProcessExitObservedAtUs": null,
+  "atClientResult": {
+    "backupSha256": "9d53661fa0390f30b57a225b22c9dc6631951094cb506141ca836921446c9062",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "bbb18646",
+        "status": "working",
+        "exit_code": null,
+        "created_at": 1795379498.2082229,
+        "finished_at": null,
+        "attempt_id": "op-814b5b938c174978ac11eb2c.1"
+      }
+    ],
+    "receipts": [],
+    "deliveries": []
+  },
+  "afterClientExit": null,
+  "finalDatabase": {
+    "backupSha256": "dabf3784a07928d7b49493d1eb0f7db50155524403a663db055e23550dcc7cdf",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "bbb18646",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795379498.2082229,
+        "finished_at": 1795379498.243558,
+        "attempt_id": "op-814b5b938c174978ac11eb2c.1"
+      }
+    ],
+    "receipts": [
+      {
+        "id": 1,
+        "operation_key": "op-814b5b938c174978ac11eb2c",
+        "created_by": "op-814b5b938c174978ac11eb2c.1"
+      }
+    ],
+    "deliveries": [
+      {
+        "attempt_id": "op-814b5b938c174978ac11eb2c.1",
+        "operation_key": "op-814b5b938c174978ac11eb2c",
+        "receipt_id": 1
+      }
+    ]
+  }
+}

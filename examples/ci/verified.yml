@@ -1,0 +1,52 @@
+name: MCP execution safety
+on: [push, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - run: npm ci --include=dev --ignore-scripts
+      - name: Verify the declared contract
+        shell: bash
+        env:
+          SUITE: ${{ vars.MRK_SUITE }}
+          MCP_URL: ${{ vars.MRK_URL }}
+          ALLOW_STDIO: ${{ vars.MRK_ALLOW_STDIO }}
+        run: |
+          set -eu -o pipefail
+          kit=./node_modules/.bin/mcp-reliability-kit
+          if [[ -z "${SUITE:-}" ]]; then
+            SUITE="$RUNNER_TEMP/mrk-fixture.yaml"
+            "$kit" init -c "$SUITE"
+          fi
+          set -- test -c "$SUITE" --out artifacts/mrk
+          if [[ -n "${MCP_URL:-}" ]]; then set -- "$@" --allow-external --allow-url "$MCP_URL"; fi
+          if [[ "${ALLOW_STDIO:-}" == "true" ]]; then set -- "$@" --allow-external --allow-stdio; fi
+          status=0
+          "$kit" "$@" > "$RUNNER_TEMP/mrk-summary.txt" 2>&1 || status=$?
+          cat "$RUNNER_TEMP/mrk-summary.txt"
+          {
+            echo '### MCP execution safety'
+            echo '~~~~text'
+            head -c 64000 "$RUNNER_TEMP/mrk-summary.txt"
+            echo
+            echo '~~~~'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: mcp-execution-evidence
+          path: |
+            artifacts/mrk/run-*/report.json
+            artifacts/mrk/run-*/junit.xml
+            artifacts/mrk/pending-*/progress.json
+          retention-days: 7

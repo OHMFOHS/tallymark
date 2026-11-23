@@ -1,0 +1,17 @@
+version: 1
+targets:
+  filesystem:
+    kind: stdio
+    command: mcp-server-filesystem
+    args: ['--read-only', '.']
+tests:
+  - id: discover-directory
+    target: filesystem
+    mode: observational
+    tool: list_allowed_directories
+    arguments: {}
+    allowSideEffects: true
+    fault: { kind: none }
+    expectResponses: [success]
+    verify: { kind: none }
+    invariant: { minEffects: 0, maxEffects: 0 }

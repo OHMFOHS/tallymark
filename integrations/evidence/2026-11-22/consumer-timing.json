@@ -1,0 +1,12 @@
+{
+  "version": "0.4.0-beta.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "node": "v24.22.3",
+  "installer": "npm",
+  "freshRegistryCache": true,
+  "fixture": "bundled stdio",
+  "installMs": 1434,
+  "doctorMs": 557,
+  "installToFirstDiagnosticMs": 1992
+}

@@ -1,0 +1,11 @@
+{
+  "upstream": "backburner-mcp",
+  "version": "1.0.0",
+  "mcp": "2.3.0",
+  "python": "3.13.5",
+  "sqlite": "3.53.4",
+  "node": "v24.22.3",
+  "platform": "Darwin",
+  "arch": "arm64",
+  "transport": "loopback Streamable HTTP"
+}

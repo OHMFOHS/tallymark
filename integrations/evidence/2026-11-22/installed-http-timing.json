@@ -1,0 +1,13 @@
+{
+  "node": "v24.22.3",
+  "npm": "11.8.0",
+  "freshRegistryCache": true,
+  "server": "@modelcontextprotocol/server-filesystem@2.4.0",
+  "transport": "loopback Streamable HTTP",
+  "installMs": 1180,
+  "npxDoctorMs": 485,
+  "installToFirstDiagnosticMs": 1665,
+  "toolsDiscovered": 10,
+  "toolCalls": 0,
+  "safety": "unassessed"
+}

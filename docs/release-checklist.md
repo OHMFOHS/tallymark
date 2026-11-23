@@ -1,0 +1,21 @@
+# Public beta checklist
+
+| Priority | Gate                    | Evidence or remaining work                                                                                                                                                                                                                                                                       |
+| -------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1        | Hosted portability      | Run the checked-in Ubuntu/macOS × Node 22/24/26 matrix on a maintainer-authorized remote. Inspect uploaded JSON/JUnit from the fixture controls and external runs. Local macOS and clean Debian arm64 results are recorded in the [beta rehearsal](beta-validation.md). Hosted jobs are pending. |
+| 1        | Scope of the beta claim | The [Backburner pilot](backburner.md) demonstrated duplicate, deduplicated and delayed completion on a controlled SQLite receipt workload. Broader claims require validation with an application owner at their deployed commit boundary.                                                        |
+| 2        | Distribution            | From a clean checkout run frozen installation, build, schema drift check, lint, formatting, tests, external harness and the fresh-cache npm consumer smoke test. Confirm version, tar inventory, license, npm ownership and intended prerelease tag before a maintainer-authorized release.      |
+| 2        | Release evidence        | Compare the raw artifacts with the compatibility matrix, rerun dependency audits at release time and record platform/runtime versions. One skipped or unresolved case blocks a verified gate.                                                                                                    |
+| 3        | Recovery                | Use the offline journal reader to match attempted calls to backend records after a process kill. [Recovery procedure](troubleshooting.md#recover-an-interrupted-run)                                                                                                                             |
+
+## Beta publishing preparation
+
+The unscoped registry name returned 404 on 2026-11-22. This neither reserves the name nor proves publisher authorization. The package has an explicit public registry and beta dist-tag. Once the canonical public GitHub repository is known, set its exact repository.url in package.json and add the real issue tracker and homepage. The release identity check fails until the repository matches the tag's GitHub owner and name.
+
+Configure the trusted publisher on npm for the real owner, repo, workflow filename release-beta.yml and GitHub environment npm-beta. Confirm the registry's permitted bootstrap path for a new package. Protect the environment with reviewers and restrict release tags. Enable private vulnerability reporting and verify the contact path. Do not store a long-lived npm token in ordinary CI. The manual workflow checks the exact beta tag/version, runs the maintainer matrix, then publishes the already tested Ubuntu Node 24 archive using OIDC and provenance. Maintainer authorization is required to create the tag or dispatch this workflow. No hosted or registry publication test has been run. [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/) · [npm provenance requirements](https://docs.npmjs.com/generating-provenance-statements/)
+
+## Next development priorities
+
+1. Have a second maintainer reproduce the Backburner evidence and validate the exporter against their deployed workload, including a worker restart.
+2. The [cross-generation Python HTTP cancellation experiment](http-cancellation.md) has local evidence. Confirm portability with a maintainer-authorized hosted run.
+3. Interrupted-case correlation and offline inspection are available in beta.2. Process-kill and journal-write failures have regression coverage. Host power loss and storage-controller failure remain outside the tested recovery boundary.

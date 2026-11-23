@@ -1,0 +1,135 @@
+{
+  "reportVersion": 3,
+  "contractVersion": 1,
+  "planned": [
+    "read-seed"
+  ],
+  "seed": 1,
+  "results": [
+    {
+      "id": "read-seed",
+      "operationKey": "op-3e7e85a742f4f3603e4eb44e",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 1,
+      "status": "INCONCLUSIVE",
+      "reason": "observed",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "unavailable"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-3e7e85a742f4f3603e4eb44e.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "state",
+          "reading": "unavailable"
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success",
+          "actual": "success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 1,
+          "actual": null,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "0..1",
+          "actual": null,
+          "verdict": "unknown"
+        }
+      ],
+      "config": {
+        "id": "read-seed",
+        "target": "upstream",
+        "mode": "observational",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "http",
+          "endpoint": "[redacted]"
+        },
+        "tool": "read_text_file",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "none"
+        },
+        "expectResponses": [
+          "success"
+        ],
+        "verify": {
+          "kind": "none"
+        },
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 1000
+      }
+    }
+  ],
+  "findings": [
+    {
+      "version": 1,
+      "caseId": "read-seed",
+      "tool": "read_text_file",
+      "scenario": "none",
+      "mode": "observational",
+      "status": "INCONCLUSIVE",
+      "severity": "unassessed",
+      "conclusion": "The response sequence was observed. Verified safety requires an independent effect count and terminal attempt IDs.",
+      "expected": {
+        "invariant": {
+          "minEffects": 0,
+          "maxEffects": 1
+        },
+        "responses": [
+          "success"
+        ]
+      },
+      "observed": {
+        "calls": 1,
+        "responses": [
+          "success"
+        ],
+        "highestObservedEffects": null,
+        "completeTerminalSet": false
+      },
+      "evidenceEvents": [
+        2,
+        5
+      ],
+      "uncertainty": "The response sequence was observed. Verified safety requires an independent effect count and terminal attempt IDs.",
+      "remediation": "For a safety verdict, export committed effects and terminal attempt IDs from the authoritative store.",
+      "reproduction": {
+        "replay": "mcp-reliability-kit report \"$REPORT_JSON\"",
+        "isolatedRun": "mcp-reliability-kit test -c \"$SUITE\" --case read-seed --allow-external --allow-url \"$MCP_URL\"",
+        "conditions": "Use the original redacted suite inputs and seed 1 on a fresh isolated target. Reconcile pending effects before authorizing a live run."
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "cliExit": 1,
+  "replayExit": 1,
+  "cliReturnedAt": 1795378866.8794482,
+  "gateReleaseStartedAt": null,
+  "atVerdict": {
+    "backupSha256": "3ea42f66c044b1a45227c9784ed2f4fe858671d83957b3eda356415319d2111e",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "a4cbb956",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378866.729701,
+        "finished_at": 1795378866.766113,
+        "attempt_id": "op-a744f79cea2410c03a53bf62.1"
+      },
+      {
+        "id": "0aae4c6a",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378866.783895,
+        "finished_at": 1795378866.821439,
+        "attempt_id": "op-a744f79cea2410c03a53bf62.2"
+      }
+    ],
+    "receipts": [
+      {
+        "id": 1,
+        "operation_key": "op-a744f79cea2410c03a53bf62",
+        "created_by": "op-a744f79cea2410c03a53bf62.1"
+      },
+      {
+        "id": 2,
+        "operation_key": "op-a744f79cea2410c03a53bf62",
+        "created_by": "op-a744f79cea2410c03a53bf62.2"
+      }
+    ],
+    "deliveries": [
+      {
+        "attempt_id": "op-a744f79cea2410c03a53bf62.1",
+        "operation_key": "op-a744f79cea2410c03a53bf62",
+        "receipt_id": 1
+      },
+      {
+        "attempt_id": "op-a744f79cea2410c03a53bf62.2",
+        "operation_key": "op-a744f79cea2410c03a53bf62",
+        "receipt_id": 2
+      }
+    ]
+  },
+  "afterSettlement": {
+    "backupSha256": "3ea42f66c044b1a45227c9784ed2f4fe858671d83957b3eda356415319d2111e",
+    "uniqueOperationIndex": false,
+    "jobs": [
+      {
+        "id": "a4cbb956",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378866.729701,
+        "finished_at": 1795378866.766113,
+        "attempt_id": "op-a744f79cea2410c03a53bf62.1"
+      },
+      {
+        "id": "0aae4c6a",
+        "status": "completed",
+        "exit_code": 0,
+        "created_at": 1795378866.783895,
+        "finished_at": 1795378866.821439,
+        "attempt_id": "op-a744f79cea2410c03a53bf62.2"
+      }
+    ],
+    "receipts": [
+      {
+        "id": 1,
+        "operation_key": "op-a744f79cea2410c03a53bf62",
+        "created_by": "op-a744f79cea2410c03a53bf62.1"
+      },
+      {
+        "id": 2,
+        "operation_key": "op-a744f79cea2410c03a53bf62",
+        "created_by": "op-a744f79cea2410c03a53bf62.2"
+      }
+    ],
+    "deliveries": [
+      {
+        "attempt_id": "op-a744f79cea2410c03a53bf62.1",
+        "operation_key": "op-a744f79cea2410c03a53bf62",
+        "receipt_id": 1
+      },
+      {
+        "attempt_id": "op-a744f79cea2410c03a53bf62.2",
+        "operation_key": "op-a744f79cea2410c03a53bf62",
+        "receipt_id": 2
+      }
+    ]
+  }
+}

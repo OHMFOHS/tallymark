@@ -1,0 +1,5 @@
+{
+  "kind": "stdio",
+  "command": "mcp-server-filesystem",
+  "args": ["--read-only", "."]
+}

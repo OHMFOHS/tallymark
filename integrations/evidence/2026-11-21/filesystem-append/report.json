@@ -1,0 +1,122 @@
+{
+  "reportVersion": 3,
+  "contractVersion": 1,
+  "planned": [
+    "repeat-append"
+  ],
+  "seed": 1,
+  "results": [
+    {
+      "id": "repeat-append",
+      "operationKey": "op-a64d17fd9f348432d8fb11b5",
+      "scenarioVersion": 3,
+      "protocolVersion": "2026-07-28",
+      "invocationCount": 2,
+      "status": "FAIL",
+      "reason": "invariant",
+      "events": [
+        {
+          "seq": 1,
+          "kind": "connected"
+        },
+        {
+          "seq": 2,
+          "kind": "baseline",
+          "reading": "absent"
+        },
+        {
+          "seq": 3,
+          "kind": "invoke",
+          "attempt": 1,
+          "attemptId": "op-a64d17fd9f348432d8fb11b5.1"
+        },
+        {
+          "seq": 4,
+          "kind": "reply",
+          "attempt": 1,
+          "response": "success"
+        },
+        {
+          "seq": 5,
+          "kind": "before-retry",
+          "reading": "present",
+          "entry": {
+            "effects": 1,
+            "settledAttempts": 0
+          }
+        },
+        {
+          "seq": 6,
+          "kind": "invoke",
+          "attempt": 2,
+          "attemptId": "op-a64d17fd9f348432d8fb11b5.2"
+        },
+        {
+          "seq": 7,
+          "kind": "reply",
+          "attempt": 2,
+          "response": "success"
+        },
+        {
+          "seq": 8,
+          "kind": "state",
+          "reading": "present",
+          "entry": {
+            "effects": 2,
+            "settledAttempts": 0
+          }
+        }
+      ],
+      "assertions": [
+        {
+          "name": "responses",
+          "expected": "success, success",
+          "actual": "success, success",
+          "verdict": "met"
+        },
+        {
+          "name": "settlement",
+          "expected": 2,
+          "actual": 0,
+          "verdict": "unknown"
+        },
+        {
+          "name": "effects",
+          "expected": "1..1",
+          "actual": 2,
+          "verdict": "violated"
+        }
+      ],
+      "config": {
+        "id": "repeat-append",
+        "target": "upstream",
+        "mode": "verified",
+        "retryPolicy": "scheduled",
+        "transport": {
+          "kind": "stdio",
+          "endpoint": "[redacted]"
+        },
+        "tool": "append_file",
+        "arguments": "[redacted]",
+        "allowSideEffects": true,
+        "fault": {
+          "kind": "duplicate",
+          "maxRetries": 1
+        },
+        "expectResponses": [
+          "success",
+          "success"
+        ],
+        "verify": {
+          "kind": "file"
+        },
+        "invariant": {
+          "minEffects": 1,
+          "maxEffects": 1
+        },
+        "requestTimeoutMs": 8000,
+        "settleTimeoutMs": 400
+      }
+    }
+  ]
+}
